@@ -1,0 +1,25 @@
+@startuml booking
+' left to right direction
+' skinparam linetype ortho
+' skinparam handwritten false
+skinparam shadowing true
+skinparam activity {
+    StartColor #2688d4
+    BarColor SaddleBrown
+    EndColor #2688d4
+    BackgroundColor lightblue
+}
+
+title
+ <u>Flowchart: Booking Room</u>
+end title
+
+(*) --> "Check Available Room"
+    --> if "Available?" then
+    --> "Make a Booking"
+    -->(*)
+    else
+    --> "Error / Full room"
+    Endif
+' -->(*)
+@enduml

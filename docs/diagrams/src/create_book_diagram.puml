@@ -1,0 +1,40 @@
+@startuml Create Book
+!theme toy
+!define SPRITESURL https://raw.githubusercontent.com/rabelenda/cicon-plantuml-sprites/v1.0/sprites
+!includeurl SPRITESURL/desktop.puml
+!includeurl SPRITESURL/gearman.puml
+!includeurl SPRITESURL/postgresql.puml
+!includeurl SPRITESURL/server.puml
+
+' skinparam linetype polyline
+skinparam roundcorner 20
+' left to right direction
+skinparam shadowing true
+skinparam rectangle {
+    BackgroundColor LightBlue
+}
+skinparam package {
+    BackgroundColor LightGreen
+}
+skinparam database {
+    BackgroundColor Blue
+}
+title Scheme: Create Book
+
+rectangle "body { \ndescription: 'string'\ncheck_in: 'mm/dd/yyyy'\ncheck_out: 'mm/dd/yyyy'\nRoomId: integer \n}" as body
+rectangle "<$desktop>\nClient" as client #B4A7E5
+database "<$postgresql>\n" as database 
+package "Express.js" {
+rectangle "<$gearman>\nController" as controller
+rectangle "<$server>\nModel" as model
+}
+
+body -[dotted]u- client
+client -r-> controller : POST /user/book
+controller -r-> model : create book use model
+model -r-> database : model query DB
+database -l-> model : DB response
+model -l-> controller : model return response
+controller -l-> client : return response
+@enduml
+

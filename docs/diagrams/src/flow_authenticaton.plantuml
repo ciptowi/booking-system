@@ -1,0 +1,34 @@
+@startuml auth
+' left to right direction
+' skinparam linetype ortho
+' skinparam handwritten false
+skinparam shadowing true
+skinparam activity {
+    StartColor #2688d4
+    BarColor SaddleBrown
+    EndColor #2688d4
+    BackgroundColor lightblue
+}
+
+title
+ <u>Flowchart: User Authentication</u>
+end title
+
+(*) --> if "Registered?" then
+    -->[yes] "Login" as login 
+    else
+        ->[no] "Register in/ register"
+        -> if "Success?" then
+        -> login
+            --> if "Success?" then
+            --> "Continue / Redirect next"   
+            -->(*)
+            else 
+            --> "Error in Auth" as err
+            Endif
+        else
+        -->  err
+        Endif
+    Endif
+' -->(*)
+@enduml

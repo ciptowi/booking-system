@@ -1,0 +1,38 @@
+@startuml Read Room
+!theme toy
+!define SPRITESURL https://raw.githubusercontent.com/rabelenda/cicon-plantuml-sprites/v1.0/sprites
+!includeurl SPRITESURL/desktop.puml
+!includeurl SPRITESURL/gearman.puml
+!includeurl SPRITESURL/postgresql.puml
+!includeurl SPRITESURL/server.puml
+
+skinparam linetype polyline
+skinparam roundcorner 20
+' left to right direction
+skinparam shadowing true
+skinparam rectangle {
+    BackgroundColor LightBlue
+}
+skinparam package {
+    BackgroundColor LightGreen
+}
+skinparam database {
+    BackgroundColor Blue
+}
+title Scheme: Read Room
+
+rectangle "<$desktop>\nClient" as client #B4A7E5
+database "<$postgresql>\n" as database 
+package "Express.js" {
+rectangle "<$gearman>\nController" as controller
+rectangle "<$server>\nModel" as model
+}
+
+client -r-> controller : GET /user/room
+controller -r-> model : request model
+model -r-> database : query DB
+database -l-> model : DB response
+model -l-> controller : model  response
+controller -l-> client : return response
+@enduml
+

@@ -1,0 +1,56 @@
+@startuml database
+' hide the spot
+hide circle
+
+left to right direction
+skinparam roundcorner 10
+' skinparam linetype ortho
+skinparam shadowing false
+skinparam handwritten false
+skinparam class {
+    BackgroundColor white
+    ArrowColor #2688d4
+    BorderColor black
+}
+
+
+title
+ <u>Flowchart: Database Struktur and Relation</u>
+end title
+
+!define primary_key(x) <b><color:#b8861b><&key></color> x</b>
+!define foreign_key(x) <color:#aaaaaa><&key></color> x
+!define column(x) <color:#efefef><&media-record></color> x
+!define table(x) entity x << (T, white) >>
+table( User ) {
+  primary_key( id ): UUID 
+  column( username ): VARCHAR[32]
+  column( email ): VARCHAR[32]
+  column( password ): VARCHAR[64]
+  column( role ): VARCHAR[32]
+  foreign_key( BookId ): INTEGER <<FK>> 
+  column( createdAt ): DATE
+  column( updatedAt ): DATE
+}
+table( Room ) {
+  primary_key( id ): UUID 
+  column( room_name ): VARCHAR[32]
+  column( booked ): BOOLEAN
+  foreign_key( BookId ): INTEGER <<FK>>  
+  column( createdAt ): DATE
+  column( updatedAt ): DATE
+}
+table( Book ) {
+  primary_key( id ): UUID 
+  column( booked_for ): VARCHAR[32]
+  column( description ): VARCHAR[64]
+  column( check_in ): DATE
+  column( check_out ): DATE
+  column( createdAt ): DATE
+  column( updatedAt ): DATE
+}
+' User::id }|--|| Role::UserId : hesOne
+Book::id -- User::BookId : ""
+Book::id -- Room::BookId : ""
+
+@enduml
