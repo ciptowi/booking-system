@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon server.js",
     "start": "node server.js",
-    "build": "sequelize db:migrate --env production && <other stuff to do before run the app>"
+    "build": "sequelize db:migrate --env production && node server.js"
   },
   "author": "cipto",
   "license": "ISC",
@@ -18,7 +18,8 @@
     "jsonwebtoken": "^8.5.1",
     "pg": "^8.7.3",
     "pg-hstore": "^2.3.4",
-    "sequelize": "^6.21.2"
+    "sequelize": "^6.21.2",
+    "sequelize-cli": "^6.4.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.19"
