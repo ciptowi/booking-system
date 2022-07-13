@@ -1,8 +1,0 @@
-postgres://dyrqewtbphkxep:7cdde087336991342bd8b9e0fe88ce374c9dea58c97c9f9b728e97eaa3e4e049@ec2-3-223-169-166.compute-1.amazonaws.com:5432/d5nlsvrjufa97k
-postgres://{user}:{password}@{hostname}:{port}/{database-name}
-
-PROD_DB_USERNAME : dyrqewtbphkxep
-PROD_DB_PASSWORD : 7cdde087336991342bd8b9e0fe88ce374c9dea58c97c9f9b728e97eaa3e4e049
-PROD_DB_NAME : d5nlsvrjufa97k
-PROD_DB_HOSTNAME : ec2-3-223-169-166.compute-1.amazonaws.com
-PROD_DB_PORT : 5432
