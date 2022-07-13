@@ -5,8 +5,7 @@
   "main": "app.js",
   "scripts": {
     "dev": "nodemon server.js",
-    "start": "node server.js",
-    "build": "sequelize db:migrate --env production && node server.js"
+    "start": "node server.js"
   },
   "author": "cipto",
   "license": "ISC",
